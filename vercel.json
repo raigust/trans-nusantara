@@ -1,3 +1,4 @@
+
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
@@ -7,10 +8,17 @@
     },
     "backend-golang": {
       "root": "backend-golang",
-      "runtime": "go"
+      "framework": "go",
+      "entrypoint": "main.go"
     }
   },
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "backend-golang"
+      }
+    },
     {
       "source": "/(.*)",
       "destination": {
