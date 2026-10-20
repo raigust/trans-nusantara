@@ -9,7 +9,7 @@
     "backend-golang": {
       "root": "backend-golang",
       "framework": "go",
-      "entrypoint": "main.go"
+      "entrypoint": "cmd/api/main.go"
     }
   },
   "rewrites": [
