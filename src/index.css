@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-apple-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter, sans-serif;
+    --font-apple-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Inter, sans-serif;
+
+    /* Apple Design Tokens from DESIGN__1__83fbc614.md */
+    --color-primary: #0066cc;
+    --color-primary-focus: #0071e3;
+    --color-primary-on-dark: #2997ff;
+    --color-ink: #1d1d1f;
+    --color-body: #1d1d1f;
+    --color-body-on-dark: #ffffff;
+    --color-body-muted: #cccccc;
+    --color-ink-muted-80: #333333;
+    --color-ink-muted-48: #7a7a7a;
+    --color-divider-soft: #f0f0f0;
+    --color-hairline: #e0e0e0;
+    --color-canvas: #ffffff;
+    --color-canvas-parchment: #f5f5f7;
+    --color-surface-pearl: #fafafc;
+    --color-surface-tile-1: #000000;
+    --color-surface-tile-2: #000000;
+    --color-surface-tile-3: #000000;
+    --color-surface-black: #000000;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-apple-text);
+    background-color: #ffffff;
+    color: #1d1d1f;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-apple-text);
+    background-color: #ffffff;
+    color: #1d1d1f;
+    overflow-x: hidden;
+  }
+
+  /* SF Pro Display & SF Pro Text Typography cadence */
+  h1, h2, h3, .apple-headline {
+    font-family: var(--font-apple-display);
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  p, span, a, button, input, select {
+    font-family: var(--font-apple-text);
+  }
+}
+
+/* ==========================================================
+   APPLE DESIGN SYSTEM UTILITIES & TOKENS
+   Directly matching DESIGN__1__83fbc614.md
+   ========================================================== */
+
+/* The system's ONLY signature drop-shadow (applied only to product imagery resting on a surface) */
+.apple-product-shadow {
+  box-shadow: 3px 5px 30px 0px rgba(0, 0, 0, 0.22);
+}
+
+.apple-product-shadow-lg {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.28), 0px 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Frosted Glass Navigation */
+.apple-frosted-nav {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(245, 245, 247, 0.82);
+}
+
+.apple-frosted-nav-dark {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(39, 39, 41, 0.85);
+}
+
+/* Apple Primary Pill CTA (Action Blue #0066cc) */
+.apple-btn-primary {
+  background-color: #0066cc;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 10px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.apple-btn-primary:hover {
+  background-color: #0071e3;
+}
+
+.apple-btn-primary:active {
+  transform: scale(0.95);
+}
+
+/* Apple Secondary Ghost Pill CTA */
+.apple-btn-secondary {
+  background-color: transparent;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 9px 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.apple-btn-secondary:hover {
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.apple-btn-secondary:active {
+  transform: scale(0.95);
+}
+
+/* Apple Link with subtle chevron */
+.apple-link {
+  color: #0066cc;
+  font-size: 17px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+}
+
+.apple-link:hover {
+  text-decoration: underline;
+}
+
+.apple-link-on-dark {
+  color: #2997ff;
+  font-size: 17px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.apple-link-on-dark:hover {
+  text-decoration: underline;
+}
+
+/* Apple Store Utility Card: rounded-lg (18px) with 1px hairline border */
+.apple-utility-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 18px;
+  padding: 24px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.apple-utility-card:hover {
+  transform: scale(1.01);
+  border-color: #c0c0c0;
+}
+
+/* Custom Hide Scrollbar for Horizontal Strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Ticket Formatting */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printable-ticket, #printable-ticket * {
+    visibility: visible !important;
+  }
+  #printable-ticket {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    background: white !important;
+    color: black !important;
+  }
+}

@@ -1,0 +1,128 @@
+// Supabase & PostgreSQL schema definition with Prisma Client Go
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Supabase connection pooler or direct string
+}
+
+generator db {
+  provider = "go run github.com/steebchen/prisma-client-go"
+  output   = "../internal/db"
+  package  = "db"
+}
+
+enum BusClass {
+  ROYAL_SLEEPER
+  EXECUTIVE_PLUS
+  SUPER_EXECUTIVE
+  VIP_CLASS
+}
+
+enum BusStatus {
+  READY
+  IN_TRIP
+  MAINTENANCE
+}
+
+enum ScheduleStatus {
+  ON_TIME
+  DELAYED
+  BOARDING
+  DEPARTED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+model Bus {
+  id           String      @id @default(uuid())
+  code         String      @unique // e.g. TN-01
+  name         String
+  plateNumber  String      @unique
+  model        String
+  seatCapacity Int
+  busClass     BusClass
+  layout       String      @default("2-2")
+  totalRows    Int         @default(10)
+  status       BusStatus   @default(READY)
+  facilities   String[]    // Array of facility strings
+  imageUrl     String?
+  schedules    Schedule[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@map("buses")
+}
+
+model Route {
+  id                  String     @id @default(uuid())
+  origin              String
+  destination         String
+  originTerminal      String
+  destinationTerminal String
+  distanceKm          Float
+  estimatedHours      Float
+  popular             Boolean    @default(false)
+  schedules           Schedule[]
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  @@map("routes")
+}
+
+model Schedule {
+  id            String         @id @default(uuid())
+  routeId       String
+  route         Route          @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  busId         String
+  bus           Bus            @relation(fields: [busId], references: [id], onDelete: Cascade)
+  departureDate DateTime       @db.Date
+  departureTime String         // e.g. "08:30"
+  arrivalTime   String         // e.g. "17:00"
+  basePrice     Decimal        @db.Decimal(12, 2)
+  bookedSeats   String[]       // Array of seat codes e.g. ["1A", "1B"]
+  status        ScheduleStatus @default(ON_TIME)
+  bookings      Booking[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("schedules")
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  bookingCode   String        @unique // e.g. TN-98241
+  scheduleId    String
+  schedule      Schedule      @relation(fields: [scheduleId], references: [id], onDelete: Restrict)
+  contactName   String
+  contactEmail  String
+  contactPhone  String
+  totalPrice    Decimal       @db.Decimal(12, 2)
+  paymentMethod String        // QRIS, BCA_VA, MANDIRI_VA, GOPAY
+  paymentStatus PaymentStatus @default(PAID)
+  paidAt        DateTime?
+  boarded       Boolean       @default(false)
+  boardedAt     DateTime?
+  passengers    Passenger[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("bookings")
+}
+
+model Passenger {
+  id             String   @id @default(uuid())
+  bookingId      String
+  booking        Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  seatNumber     String
+  fullName       String
+  identityNumber String
+  phone          String
+  gender         String   // L or P
+  createdAt      DateTime @default(now())
+
+  @@map("passengers")
+}
