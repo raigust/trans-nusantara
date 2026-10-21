@@ -84,7 +84,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-medium text-white shadow-xl">
           <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-ping" />
           <span className="w-2 h-2 rounded-full bg-[#2997ff] -ml-4" />
-          <span className="font-semibold tracking-wider text-[11px] uppercase text-[#2997ff]">4K Ultra HD</span>
           <span className="text-white/40">&bull;</span>
           <span className="text-white/90 truncate max-w-[220px] sm:max-w-none">{currentPhoto.title}</span>
         </div>
@@ -112,10 +111,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
       {/* Main Cinematic Centerpiece Content */}
       <div className="relative z-10 max-w-[1024px] mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center space-y-5 my-auto">
-        <p className="text-xs sm:text-sm font-semibold text-[#2997ff] uppercase tracking-widest drop-shadow-md">
-          TransNusantara Double Decker &middot; Generasi Terbaru
-        </p>
-
         {/* 56px / 600 SF Pro Display with Apple Tight letter-spacing on 4K Background */}
         <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-semibold text-white tracking-[-0.03em] leading-[1.05] max-w-4xl mx-auto drop-shadow-2xl">
           Kenyamanan kelas satu. Di setiap kilometer.
