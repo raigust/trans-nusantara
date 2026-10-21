@@ -17,21 +17,21 @@ const HERO_4K_IMAGES = [
     title: 'Scania K410IB Jetbus 5 SDD (4K Eksterior)',
     desc: 'Double Decker Voyager 6x2 Opticruise',
     url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=3840&q=95',
-    badge: '4K Ultra HD &bull; Flagship Exterior'
+    badge: 'Flagship Exterior'
   },
   {
     id: 'sleeper-cockpit',
     title: 'First Class Sleeper Suite 180° Flatbed',
     desc: 'Kabin Senyap Zero-Gravity dengan Layar AVOD 14"',
     url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=3840&q=95',
-    badge: '4K Ultra HD &bull; Interior Luxury'
+    badge: 'Interior Luxury'
   },
   {
     id: 'night-express',
     title: 'Tol Trans Jawa Malam Hari Non-Stop',
     desc: 'Kecepatan Stabil dengan Retarder Scania & EBS',
     url: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=3840&q=95',
-    badge: '4K Ultra HD &bull; Night Express'
+    badge: 'Night Express'
   }
 ];
 
